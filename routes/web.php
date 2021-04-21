@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InicioController; //es para poder acceder a InicioController
+use App\Http\Controllers\InicioController; //es para poder acceder a InicioController, ya que por defecto lo busca en views. Ahora, en el codigo, cada vez que llame a "InicioController", viene a este directorio para saber como acceder a el
 
 /*
 |--------------------------------------------------------------------------
@@ -29,14 +29,14 @@ Route::get('/', function () {
 //     //con esto podemos acceder desde la web ->   http://instalacion.test:8080/bienvenida/mariam
 //     //las llaves son un parametro que espera a una variable que se llama "nombre". Si no sabemos si se va a recibir un parametro, le ponemos un signo de interrogacion al final. Ademas, le debemos poner en function que valor va a tener por default enc aso de que no lo muestre
 // });
-Route::get('/bienvenida/{nombre?}/{apellido?}', [InicioController::class, 'bienvenida']); //esta ruta invoca a un controlador y a un metodo en especifico. Esto se hace para evitar que cada ruta ocupe mucho espacio
 
 // Route::get('/contacto', function(){
 //     return view('paginas-inicio/contacto');
 // });
 
-Route::get('/contacto', [InicioController::class, 'contacto']);
+//Hacerlo con controladores
+Route::get('/bienvenida/{nombre?}/{apellido?}', [InicioController::class, 'bienvenida']); //esta ruta invoca a un controlador y a un metodo en especifico. Esto se hace para evitar que cada ruta ocupe mucho espacio
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+
+Route::get('/contacto', [InicioController::class, 'contacto']);
